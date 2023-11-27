@@ -1,0 +1,52 @@
+.itemMovie {
+  width: 451px;
+  height: 279px;
+  flex-shrink: 0;
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 0;
+
+  /* @shadow-2 */
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+.textItemMovie {
+  color: black;
+}
+.itemMovie-img {
+  display: block;
+  width: 183px;
+  height: 150px;
+  flex-shrink: 0;
+  margin-top: 50px;
+}
+
+.itemMovie-text {
+  text-align: left;
+  padding: 10px 0px;
+}
+
+.genreButton {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 46px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  border: 1px solid #d9d9d9;
+  background: #fafafa;
+}
+
+.itemMovie-date {
+  padding-bottom: 5px;
+}
+.example {
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
