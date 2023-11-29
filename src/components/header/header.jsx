@@ -1,11 +1,13 @@
-import { Header } from 'antd'
+import { Input } from 'antd'
 
-function Menu() {
+import TabsHeader from '../tabs'
+
+function HeaderSearch({ handleKeyUp }) {
   return (
     <div>
-      <Header />
+      <TabsHeader />
+      <Input placeholder="Type to search..." onKeyUp={handleKeyUp} />
     </div>
   )
 }
-
-export default Menu
+export default HeaderSearch

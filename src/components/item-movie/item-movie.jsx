@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import { Card, Flex, Typography } from 'antd'
-import './itemMovie.css'
+import { Card, Flex, Typography, Rate } from 'antd'
+import './item-movie.css'
 import { format } from 'date-fns'
 
 import imageSrc from '../../error-img.png'
@@ -26,7 +26,6 @@ export default class ItemMovie extends Component {
     const { title, text, img, releaseDate } = this.props
     const newText = this.trimText(text)
     const newData = this.formattingDate(releaseDate)
-
     return (
       <Card
         hoverable
@@ -50,7 +49,11 @@ export default class ItemMovie extends Component {
               padding: 20,
             }}
           >
-            <Typography.Title level={3}>{title}</Typography.Title>
+            <Typography.Title level={5} className="title">
+              {title}
+            </Typography.Title>
+            <div className="rating" />
+            <div className="numberRating">2</div>
             <div className="itemMovie-date">{newData}</div>
             <Flex
               vertical-wrap="wrap"
@@ -65,6 +68,7 @@ export default class ItemMovie extends Component {
               <div className="genreButton">Drama</div>
             </Flex>
             <div className="itemMovie-text">{newText}</div>
+            <Rate disabled defaultValue={2} />
           </Flex>
         </Flex>
       </Card>

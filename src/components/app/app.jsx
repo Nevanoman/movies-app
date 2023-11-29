@@ -4,13 +4,48 @@ import { Offline, Online } from 'react-detect-offline'
 
 import './app.css'
 import ListOfFilms from '../list-of-films'
+import HeaderSearch from '../header'
+import PaginationFooter from '../footer'
+import GetFilms from '../../services/get-films'
 
 import imgOops from './1382253558_623686825.jpg'
 
 const { Header, Footer, Sider, Content } = Layout
 
 export default class App extends Component {
+  state = {
+    films: [],
+    loading: true,
+    error: false,
+  }
+
+  componentDidMount(text) {
+    const getFilms = new GetFilms()
+
+    getFilms
+      .getAllFilms(text)
+      .then((films) => {
+        this.setState({
+          films,
+          loading: false,
+        })
+      })
+      .catch(this.onError)
+  }
+
+  handleKeyUp = (event) => {
+    this.componentDidMount(event.target.value)
+  }
+
+  onError = () => {
+    this.setState({
+      error: true,
+      loading: false,
+    })
+  }
+
   render() {
+    const { films, loading, error } = this.state
     return (
       <div>
         <Online>
@@ -24,11 +59,15 @@ export default class App extends Component {
             <Layout>
               <Sider className="siderStyle" />
               <Layout>
-                <Header className="headerStyle">Header</Header>
+                <Header className="headerStyle">
+                  <HeaderSearch handleKeyUp={this.handleKeyUp} />
+                </Header>
                 <Content className="content">
-                  <ListOfFilms />
+                  <ListOfFilms films={films} loading={loading} error={error} />
                 </Content>
-                <Footer className="footerStyle">Footer</Footer>
+                <Footer className="footerStyle">
+                  <PaginationFooter />
+                </Footer>
               </Layout>
               <Sider className="siderStyle" />
             </Layout>

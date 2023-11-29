@@ -1,2 +1,3 @@
-// import App  from './app'
-// export default App;
+import HeaderSearch from './header'
+
+export default HeaderSearch
