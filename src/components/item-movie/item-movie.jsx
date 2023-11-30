@@ -23,7 +23,7 @@ export default class ItemMovie extends Component {
   }
 
   render() {
-    const { title, text, img, releaseDate } = this.props
+    const { title, text, img, releaseDate, voteAverage } = this.props
     const newText = this.trimText(text)
     const newData = this.formattingDate(releaseDate)
     return (
@@ -53,7 +53,7 @@ export default class ItemMovie extends Component {
               {title}
             </Typography.Title>
             <div className="rating" />
-            <div className="numberRating">2</div>
+            <div className="numberRating">{voteAverage.toFixed(1)}</div>
             <div className="itemMovie-date">{newData}</div>
             <Flex
               vertical-wrap="wrap"
@@ -68,7 +68,7 @@ export default class ItemMovie extends Component {
               <div className="genreButton">Drama</div>
             </Flex>
             <div className="itemMovie-text">{newText}</div>
-            <Rate disabled defaultValue={2} />
+            <Rate disabled defaultValue={voteAverage / 2} />
           </Flex>
         </Flex>
       </Card>

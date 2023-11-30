@@ -1,7 +1,7 @@
 import { Pagination } from 'antd'
 
-function PaginationFooter() {
-  return <Pagination defaultCurrent={1} total={50} />
+function PaginationFooter({ page }) {
+  return <Pagination defaultCurrent={page} total={50} />
 }
 
 export default PaginationFooter
