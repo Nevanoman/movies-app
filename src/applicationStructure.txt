@@ -1,0 +1,30 @@
+<App>
+    <Online>
+    <Space>     //поля
+    <Layout>
+    <Sider/>
+                <Layout>
+                    <Header className="headerStyle">
+                        <TabsHeader />
+                    </Header>
+                    <TabSearch>                             ?               <TabRated/>
+
+                    <HeaderSearch/>                                         
+                    <ListOfFilms>                                               <ListOfFilms>
+                            <ItemMovie>                                             <ItemMovie>
+                                <StarRating />                                              <StarRating />
+                            <ItemMovie/>                                            <ItemMovie/>
+                        <ListOfFilms/>                                          <ListOfFilms/>
+                    <PaginationFooter/>                                     <PaginationFooter/>
+
+                    <TabSearch/>                                            <TabRated/>
+                </Layout>
+    <Sider/>
+    </Layout>
+    </Space>     //поля
+    </Online>
+
+    <Offline>
+        <Image width={500} src={imgOops} className="imgOops" />
+    </Offline>
+<App/>

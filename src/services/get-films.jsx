@@ -23,6 +23,8 @@ export default class GetFilms {
 
   async getAllFilms(query, page) {
     const res = await this.getResource(query, page)
+    // eslint-disable-next-line no-console
+    console.log(res.results)
     return res.results
   }
 }

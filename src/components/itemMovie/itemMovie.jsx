@@ -1,8 +1,9 @@
 import { Component } from 'react'
-import { Card, Flex, Typography, Rate } from 'antd'
-import './item-movie.css'
+import { Card, Flex, Typography } from 'antd'
+import './itemMovie.css'
 import { format } from 'date-fns'
 
+import StarRating from '../starRating'
 import imageSrc from '../../error-img.png'
 
 export default class ItemMovie extends Component {
@@ -23,7 +24,7 @@ export default class ItemMovie extends Component {
   }
 
   render() {
-    const { title, text, img, releaseDate, voteAverage } = this.props
+    const { title, text, img, releaseDate, voteAverage, guestSessionId } = this.props
     const newText = this.trimText(text)
     const newData = this.formattingDate(releaseDate)
     return (
@@ -52,8 +53,6 @@ export default class ItemMovie extends Component {
             <Typography.Title level={5} className="title">
               {title}
             </Typography.Title>
-            <div className="rating" />
-            <div className="numberRating">{voteAverage.toFixed(1)}</div>
             <div className="itemMovie-date">{newData}</div>
             <Flex
               vertical-wrap="wrap"
@@ -68,7 +67,7 @@ export default class ItemMovie extends Component {
               <div className="genreButton">Drama</div>
             </Flex>
             <div className="itemMovie-text">{newText}</div>
-            <Rate disabled defaultValue={voteAverage / 2} />
+            <StarRating voteAverage={voteAverage} guestSessionId={guestSessionId} />
           </Flex>
         </Flex>
       </Card>

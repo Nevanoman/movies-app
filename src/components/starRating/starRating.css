@@ -1,0 +1,59 @@
+.ratingRed {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: #e90000;
+  background-image: url('./rating.svg');
+  position: absolute;
+  top: 12px;
+  right: 9px;
+}
+.ratingOrange {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: #e97e00;
+  background-image: url('./rating.svg');
+  position: absolute;
+  top: 12px;
+  right: 9px;
+}
+.ratingYellow {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: #e9d100;
+  background-image: url('./rating.svg');
+  position: absolute;
+  top: 12px;
+  right: 9px;
+}
+.ratingGreen {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  stroke-width: 2px;
+  stroke: #66e900;
+  background-image: url('./rating.svg');
+  position: absolute;
+  top: 12px;
+  right: 9px;
+}
+
+.numberRating {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  width: 18px;
+  height: 14px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}

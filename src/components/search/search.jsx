@@ -1,13 +1,11 @@
 import { Input } from 'antd'
 import _ from 'lodash'
-
-import TabsHeader from '../tabs'
+import './search.css'
 
 function HeaderSearch({ handleKeyUp }) {
   return (
     <div>
-      <TabsHeader />
-      <Input placeholder="Type to search..." onKeyUp={_.debounce(handleKeyUp, 1000)} />
+      <Input placeholder="Type to search..." className="search" onKeyUp={_.debounce(handleKeyUp, 1000)} />
     </div>
   )
 }
