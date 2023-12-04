@@ -23,10 +23,33 @@ export default class ItemMovie extends Component {
     return null
   }
 
+  addGenres(genres, genre) {
+    const arr = []
+    for (let i = 0; i < genre.length; i++) {
+      for (let j = 0; j < genres.genres.length; j++) {
+        if (genre[i] === genres.genres[j].id) {
+          arr.push(genres.genres[j].name)
+        }
+      }
+    }
+    return arr
+  }
+
   render() {
-    const { title, text, img, releaseDate, voteAverage, guestSessionId } = this.props
+    const { title, text, img, releaseDate, voteAverage, guestSessionId, genre, genres } = this.props
     const newText = this.trimText(text)
     const newData = this.formattingDate(releaseDate)
+    let newGenreRender = null
+
+    if (genres) {
+      const newGenre = this.addGenres(genres, genre)
+      newGenreRender = newGenre.map((g) => (
+        <div className="genreButton" key={`${Math.random() * 10}2`}>
+          {g}
+        </div>
+      ))
+    }
+
     return (
       <Card
         hoverable
@@ -63,8 +86,7 @@ export default class ItemMovie extends Component {
                 padding: 0,
               }}
             >
-              <div className="genreButton">Action</div>
-              <div className="genreButton">Drama</div>
+              {newGenreRender}
             </Flex>
             <div className="itemMovie-text">{newText}</div>
             <StarRating voteAverage={voteAverage} guestSessionId={guestSessionId} />

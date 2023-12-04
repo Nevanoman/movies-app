@@ -15,10 +15,8 @@
 }
 .itemMovie-img {
   display: block;
-  width: 183px;
-  height: 150px;
+  width: 38%;
   flex-shrink: 0;
-  margin-top: 50px;
 }
 
 .itemMovie-text {
@@ -32,12 +30,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  width: 46px;
+  width: auto;
   height: 20px;
   flex-shrink: 0;
   border-radius: 2px;
   border: 1px solid #d9d9d9;
   background: #fafafa;
+  padding: 0px 2px;
 }
 
 .itemMovie-date {
