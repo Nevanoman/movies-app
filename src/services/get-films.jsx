@@ -23,8 +23,31 @@ export default class GetFilms {
 
   async getAllFilms(query, page) {
     const res = await this.getResource(query, page)
-    // eslint-disable-next-line no-console
-    console.log(res.results)
+
     return res.results
+  }
+
+  async findMovieById(id) {
+    const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWQyNDY5NjY1NDNlZWU1NDdlNDNkNjVlMzQzYzQ4YSIsInN1YiI6IjY1NjQ1ODIxNzA2ZTU2MDBhY2YxMjk5YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.77MjFJ2XUyOsTtx3-BYuA4tprBvkN3ONQ-mTb7ugoC8',
+        accept: 'application/json',
+      },
+    })
+
+    if (!res.ok) {
+      throw new Error(`Could not fetch, received ${res.status}`)
+    }
+
+    return await res.json()
+  }
+
+  async getMovies(arrId) {
+    const movies = await Promise.all(arrId.map((id) => this.findMovieById(id)))
+    return movies
   }
 }

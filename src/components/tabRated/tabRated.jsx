@@ -1,57 +1,64 @@
-import { Layout } from 'antd'
+import { Layout, Image, Typography } from 'antd'
 import { Component } from 'react'
 
 import ListOfFilms from '../list-of-films'
-import PaginationFooter from '../footer'
-import Rating from '../../services/rating'
+import GetFilms from '../../services/get-films'
+import './tabRated.css'
+import heHe from '../app/he-he.jpg'
 
-const { Footer, Content } = Layout
+const { Content } = Layout
 export default class TabRated extends Component {
   state = {
-    films: null,
     loading: true,
-    error: false,
-    page: 1,
-    noMatches: false,
+    films: null,
   }
 
   componentDidMount() {
-    const { guestSessionId } = this.props
-    // eslint-disable-next-line no-console
-    console.log(guestSessionId, 'TabRated')
-    const addRating = new Rating()
-    addRating
-      .geRatedFilms(guestSessionId)
-      .then((p) => {
-        // eslint-disable-next-line no-console
-        console.log(p)
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('Не удалось отобразить рейтинговые фильмы', error)
-      })
+    this.getRatedFilms()
   }
 
-  clickPagination = (event) => {
-    const { text } = this.state
-    const p = event.target.textContent
-    this.setState({
-      page: p,
-    })
-    this.updateFilms(text, p)
+  getRatedFilms() {
+    const filmsId = localStorage.getItem('ratingMovies')
+    if (filmsId) {
+      this.addFilms(this.removeDuplicates(JSON.parse(filmsId)))
+    }
+  }
+
+  removeDuplicates(arr) {
+    const set = new Set(arr)
+    return [...set]
+  }
+
+  addFilms(filmsId) {
+    const getFilms = new GetFilms()
+    getFilms
+      .getMovies(filmsId)
+      .then((res) => {
+        this.setState({
+          films: res,
+          loading: false,
+        })
+      })
+
+      .catch(this.onError)
   }
 
   render() {
-    const { films, loading, error, page, noMatches } = this.state
+    const { films, loading } = this.state
+    if (!films) {
+      return (
+        <div className="container">
+          <Typography.Title level={3} className="title">
+            There is nothing here
+          </Typography.Title>
+          <Image width={500} src={heHe} className="he-he" />
+        </div>
+      )
+    }
     return (
-      <>
-        <Content className="content">
-          <ListOfFilms films={films} loading={loading} error={error} noMatches={noMatches} />
-        </Content>
-        <Footer className="footerStyle" page={page} onClick={this.clickPagination}>
-          <PaginationFooter />
-        </Footer>
-      </>
+      <Content className="content">
+        <ListOfFilms films={films} loading={loading} />
+      </Content>
     )
   }
 }

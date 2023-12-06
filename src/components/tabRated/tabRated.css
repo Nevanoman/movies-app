@@ -1,0 +1,14 @@
+.content {
+  min-height: 700px;
+}
+
+.title {
+  text-align: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}

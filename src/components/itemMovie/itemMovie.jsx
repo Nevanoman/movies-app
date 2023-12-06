@@ -7,9 +7,15 @@ import StarRating from '../starRating'
 import imageSrc from '../../error-img.png'
 
 export default class ItemMovie extends Component {
-  trimText(text) {
-    if (text.split('').length > 140) {
-      const newTrimText = `${text.slice(0, 140).split(' ').slice(0, -3).join(' ')}...`
+  trimText(text, title) {
+    if (title) {
+      if (text.split('').length > 21) {
+        const newTrimText = `${text.slice(0, 21).split(' ').slice(0).join(' ')}...`
+        return newTrimText
+      }
+    }
+    if (text.split('').length > 99) {
+      const newTrimText = `${text.slice(0, 99).split(' ').slice(0, -3).join(' ')}...`
       return newTrimText
     }
     return text
@@ -26,9 +32,13 @@ export default class ItemMovie extends Component {
   addGenres(genres, genre) {
     const arr = []
     for (let i = 0; i < genre.length; i++) {
-      for (let j = 0; j < genres.genres.length; j++) {
-        if (genre[i] === genres.genres[j].id) {
-          arr.push(genres.genres[j].name)
+      if (genre[i].name) {
+        arr.push(genre[i].name)
+      } else {
+        for (let j = 0; j < genres.genres.length; j++) {
+          if (genre[i] === genres.genres[j].id) {
+            arr.push(genres.genres[j].name)
+          }
         }
       }
     }
@@ -36,9 +46,11 @@ export default class ItemMovie extends Component {
   }
 
   render() {
-    const { title, text, img, releaseDate, voteAverage, guestSessionId, genre, genres } = this.props
+    const { title, text, img, releaseDate, voteAverage, guestSessionId, genre, genres, id, addRatingFilm, rated } =
+      this.props
     const newText = this.trimText(text)
     const newData = this.formattingDate(releaseDate)
+    const newTitle = this.trimText(title, title)
     let newGenreRender = null
 
     if (genres) {
@@ -59,7 +71,7 @@ export default class ItemMovie extends Component {
           overflow: 'hidden',
         }}
       >
-        <Flex justify="flex-start" align="flex-start">
+        <Flex justify="flex-start" align="flex-start" className="itemMovie-img-flex">
           <img
             alt="avatar"
             src={img ? `https://image.tmdb.org/t/p/original${img}` : imageSrc}
@@ -74,7 +86,7 @@ export default class ItemMovie extends Component {
             }}
           >
             <Typography.Title level={5} className="title">
-              {title}
+              {newTitle}
             </Typography.Title>
             <div className="itemMovie-date">{newData}</div>
             <Flex
@@ -89,7 +101,13 @@ export default class ItemMovie extends Component {
               {newGenreRender}
             </Flex>
             <div className="itemMovie-text">{newText}</div>
-            <StarRating voteAverage={voteAverage} guestSessionId={guestSessionId} />
+            <StarRating
+              voteAverage={voteAverage}
+              guestSessionId={guestSessionId}
+              id={id}
+              addRatingFilm={addRatingFilm}
+              rated={rated}
+            />
           </Flex>
         </Flex>
       </Card>

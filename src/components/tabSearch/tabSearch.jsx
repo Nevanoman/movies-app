@@ -5,8 +5,6 @@ import ListOfFilms from '../list-of-films'
 import HeaderSearch from '../search'
 import PaginationFooter from '../footer'
 import GetFilms from '../../services/get-films'
-import Genres from '../../services/genres'
-import { Provider } from '../genres-context/genres-context'
 
 const { Footer, Content } = Layout
 export default class TabSearch extends Component {
@@ -17,14 +15,12 @@ export default class TabSearch extends Component {
     page: 1,
     text: null,
     noMatches: false,
-    genres: null,
   }
 
   componentDidMount() {
     const { films } = this.state
     if (films == null) {
       this.updateFilms()
-      this.getGenres()
     }
   }
 
@@ -37,21 +33,6 @@ export default class TabSearch extends Component {
 
   handleKeyUp = (event) => {
     this.updateFilms(event.target.value, 1)
-  }
-
-  getGenres() {
-    const genres = new Genres()
-    genres
-      .getGenresFilms()
-      .then((obj) => {
-        this.setState({
-          genres: obj,
-        })
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('Не удалось получить жанры фильмов :', error)
-      })
   }
 
   clickPagination = (event) => {
@@ -87,10 +68,10 @@ export default class TabSearch extends Component {
   }
 
   render() {
-    const { guestSessionId } = this.props
-    const { films, loading, error, page, noMatches, genres } = this.state
+    const { guestSessionId, addRatingFilm } = this.props
+    const { films, loading, error, page, noMatches } = this.state
     return (
-      <Provider value={genres}>
+      <>
         <Content className="content">
           <HeaderSearch handleKeyUp={this.handleKeyUp} />
           <ListOfFilms
@@ -99,12 +80,13 @@ export default class TabSearch extends Component {
             error={error}
             noMatches={noMatches}
             guestSessionId={guestSessionId}
+            addRatingFilm={addRatingFilm}
           />
         </Content>
         <Footer className="footerStyle" page={page} onClick={this.clickPagination}>
           <PaginationFooter />
         </Footer>
-      </Provider>
+      </>
     )
   }
 }

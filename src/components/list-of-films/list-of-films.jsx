@@ -8,8 +8,13 @@ import heHe from '../app/he-he.jpg'
 import { Consumer } from '../genres-context/genres-context'
 
 export default class ListOfFilms extends Component {
+  getRated(id) {
+    const rated = localStorage.getItem(id)
+    return rated
+  }
+
   render() {
-    const { films, error, loading, noMatches, guestSessionId } = this.props
+    const { films, error, loading, noMatches, guestSessionId, addRatingFilm } = this.props
     if (loading) {
       return (
         <div className="example">
@@ -30,7 +35,6 @@ export default class ListOfFilms extends Component {
         </div>
       )
     }
-    // eslint-disable-next-line no-console
     return (
       <Consumer>
         {(genres) => (
@@ -38,14 +42,17 @@ export default class ListOfFilms extends Component {
             {films.map((film) => (
               <ItemMovie
                 key={film.id}
+                id={film.id}
                 title={film.original_title}
                 text={film.overview}
                 img={film.poster_path}
                 releaseDate={film.release_date}
                 voteAverage={film.vote_average}
                 guestSessionId={guestSessionId}
-                genre={film.genre_ids}
+                genre={film.genre_ids || film.genres}
                 genres={genres}
+                addRatingFilm={addRatingFilm}
+                rated={this.getRated(film.id)}
               />
             ))}
           </Row>
