@@ -13,7 +13,7 @@ export default class TabSearch extends Component {
     loading: true,
     error: false,
     page: 1,
-    text: 'a',
+    text: undefined,
     noMatches: false,
   }
 
@@ -32,6 +32,10 @@ export default class TabSearch extends Component {
   }
 
   handleKeyUp = (event) => {
+    this.setState({
+      text: event.target.value,
+      page: 1,
+    })
     this.updateFilms(event.target.value, 1)
   }
 
@@ -39,7 +43,7 @@ export default class TabSearch extends Component {
     const { text } = this.state
     const p = event.target.textContent
     this.setState({
-      page: p,
+      page: 1,
     })
     this.updateFilms(text, p)
   }
