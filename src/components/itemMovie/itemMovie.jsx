@@ -4,7 +4,7 @@ import './itemMovie.css'
 import { format } from 'date-fns'
 
 import StarRating from '../starRating'
-import imageSrc from '../../error-img.png'
+import imageSrc from '../../assets/error-img.png'
 
 export default class ItemMovie extends Component {
   trimText(text, title) {

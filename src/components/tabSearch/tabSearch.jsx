@@ -13,14 +13,14 @@ export default class TabSearch extends Component {
     loading: true,
     error: false,
     page: 1,
-    text: null,
+    text: 'a',
     noMatches: false,
   }
 
   componentDidMount() {
-    const { films } = this.state
+    const { films, text, page } = this.state
     if (films == null) {
-      this.updateFilms()
+      this.updateFilms(text, page)
     }
   }
 
@@ -60,7 +60,7 @@ export default class TabSearch extends Component {
           films: filmsList,
           loading: false,
           text,
-          page: 1,
+          page,
         })
       })
 

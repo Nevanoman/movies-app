@@ -4,7 +4,7 @@ import { Component } from 'react'
 import ListOfFilms from '../list-of-films'
 import GetFilms from '../../services/get-films'
 import './tabRated.css'
-import heHe from '../app/he-he.jpg'
+import heHe from '../../assets/he-he.jpg'
 
 const { Content } = Layout
 export default class TabRated extends Component {

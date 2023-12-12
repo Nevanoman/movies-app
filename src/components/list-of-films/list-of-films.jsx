@@ -4,7 +4,7 @@ import { Row, Spin, Image, Typography } from 'antd'
 import ItemMovie from '../itemMovie'
 import './list-of-films.css'
 import ErrorIndicator from '../error-indicator'
-import heHe from '../app/he-he.jpg'
+import heHe from '../../assets/he-he.jpg'
 import { Consumer } from '../genres-context/genres-context'
 
 export default class ListOfFilms extends Component {

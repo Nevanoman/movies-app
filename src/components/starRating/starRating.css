@@ -8,17 +8,17 @@
   right: 9px;
 }
 .ratingRed {
-  background-image: url('./ratingRed.svg');
+  background-image: url('../../assets/ratingRed.svg');
 }
 
 .ratingOrange {
-  background-image: url('./ratingOrange.svg');
+  background-image: url('../../assets/ratingOrange.svg');
 }
 .ratingYellow {
-  background-image: url('./ratingYellow.svg');
+  background-image: url('../../assets/ratingYellow.svg');
 }
 .ratingGreen {
-  background-image: url('./ratingGreen.svg');
+  background-image: url('../../assets/ratingGreen.svg');
 }
 
 .numberRating {

@@ -10,8 +10,7 @@ import TabsHeader from '../tabs'
 import GuestSession from '../../services/guest-session'
 import { Provider } from '../genres-context/genres-context'
 import Genres from '../../services/genres'
-
-import imgOops from './1.jpg'
+import imgOops from '../../assets/1.jpg'
 
 const { Sider, Header } = Layout
 
